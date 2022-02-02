@@ -20,47 +20,6 @@ const shortUrlSchema = new mongoose.Schema({
   }
 });
 
-//CRUD
-
-const update = async (id, full) => {
-  const urls = await ShortUrl.updateOne({ id: id },
-
-      {
-
-          $set: {
-              full: full
-          }
-
-      })
-};
-
-
-/*
-const create = async (id, full, short, clicks) => {
-    const urls = await ShortUrl({
-        id: id,
-        full: full,
-        short: short,
-        click: clicks
-    })
-    const save = await urls.save()
-    console.log(save)
-}
-
-const red = async () => {
-  const urls = await ShortUrl.find()
-  console.log(urls)
-
-}
-
-const deleted = async(id)=>{
-  const urls = await ShortUrl.deleteOne({ id: id })
-   console.log(urls)
-}
-
-*/
-
-
 
 
 module.exports = mongoose.model('ShortUrl', shortUrlSchema),update;

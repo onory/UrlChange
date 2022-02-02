@@ -43,34 +43,24 @@ app.get('/:shortUrl', async (req, res) => {
 })
 
 
-//peticion post de pide id y cambiar url full
+//peticion post actualiza newUrlFull
 app.post('/update', async (req, res) => {
- 
-  res.json({
-   id: req.params.newUrlFull,
-   newUrl: req.params.idchange 
- })
 
-const cambio = await update(res.json.id,res.json.newUrl);
-if(cambio){
-alert('se modifico url full');
-}
+const idMod = req.body.idchange;
+const newUrl = req.body.newUrlFull;
 
+console.log('data contiene 1:', idMod);
+console.log('data contiene 2:', newUrl);
+
+await ShortUrl.findOneAndUpdate({
+  _id : idMod
+},{
+  full: newUrl
 })
 
+ res.redirect('/')
+})
 
-/*
-app.post('/:id/:full', asyn (req, res) {
-  shortUrl.findById(req.params.id, function (err, shortUrl) {
-    shortUrl.full = req.body.newUrlFull;
-    
-    shortUrl.save(function (err) {
-      if (err) return res.status(500).send(err.message);
-      res.status(200).jsonp(tvshow);
-    })
-  })
-});
-*/
 
 
 

@@ -1,10 +1,11 @@
-const mongodb = require('mongodb')
+const mongodb = require('mongodb');
+const { ObjectId } = require('mongoose');
 const mongoose = require('mongoose')
 const shortId = require('shortid')
 
 const shortUrlSchema = new mongoose.Schema({
 
-  full: {
+  UrlDestination: {
     type: String,
     required: true
   },
@@ -17,9 +18,32 @@ const shortUrlSchema = new mongoose.Schema({
     type: Number,
     required: true,
     default: 0
+  },
+
+  BeforeUrl: {
+      type: String,
+      required: true
+  },
+
+  dateChange: {
+      type: Date,
+      required: true,
+  },
+  historic: {
+  type: Array,
+  required: true,
   }
+  
 });
 
+//id
+//destino - UrlDestination
+//acortado - short
+//contadorClicks - clicks
+//historico [ {destino:, anterio:,fecha:,clicks}] -historic
+
+//mind map
 
 
-module.exports = mongoose.model('ShortUrl', shortUrlSchema),update;
+
+module.exports = mongoose.model('ShortUrl', shortUrlSchema);
